@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Comments from './Comments';
-import moment from 'jalali-moment';
-import './styles/Comment.scss';
+
+// import './styles/Comment.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import AddComment from './AddComment';

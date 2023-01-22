@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSyncAlt } from '@fortawesome/free-solid-svg-icons';
 
-import SVG from 'react-inlinesvg';
-import './styles/AddComment.scss';
+// import './styles/AddComment.scss';
 const AddComment = ({ parent_id }) => {
     const [success, setSuccess] = useState(false);
     const [text, setText] = useState('');
