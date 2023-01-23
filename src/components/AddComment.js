@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSyncAlt } from '@fortawesome/free-solid-svg-icons';
+import ApiService from '../api/ApiService';
 
 // import './styles/AddComment.scss';
 const AddComment = ({ parent_id }) => {
     const [success, setSuccess] = useState(false);
     const [text, setText] = useState('');
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
 
     const [errors, setErrors] = useState([]);
 
     const submit = async e => {
         e.preventDefault();
         try {
+            const result = await ApiService.addComment({ text });
         } catch (err) {
             setErrors(err.data.error);
         }
@@ -21,59 +21,21 @@ const AddComment = ({ parent_id }) => {
 
     return (
         <div className='content-form comment-section'>
-            <p>لطفا نظرتان را بنویسید. نشانی ایمیل شما منتشر نخواهد شد.</p>
             <form onSubmit={submit}>
                 <div className='row'>
-                    <label>پیام</label>
                     <textarea
-                        placeholder='ما عاشق خواندن نظرات شما هستیم.'
+                        placeholder='Add a comment'
                         cols='45'
                         rows='8'
-                        data-vv-as='متن پیام'
                         name='text'
                         v-validate="'required'"
                         value={text}
                         onChange={e => setText(e.target.value)}
                     ></textarea>
                 </div>
-
-                <div className='rows'>
-                    <div className='row1'>
-                        <label>نام</label>
-                        <input
-                            className='name'
-                            type='text'
-                            data-vv-as='نام'
-                            name='name'
-                            v-validate="'required'"
-                            value={name}
-                            onChange={e => setName(e.target.value)}
-                        />
-                        <div
-                            className='error'
-                            v-show="errors.has('name')"
-                        ></div>
-                    </div>
-                    <div className='row1'>
-                        <label>ایمیل</label>
-                        <input
-                            type='text'
-                            data-vv-as='ایمیل'
-                            name='email'
-                            v-validate="'required|email'"
-                            value={email}
-                            onChange={e => setEmail(e.target.value)}
-                        />
-                        <div
-                            className='error'
-                            v-show="errors.has('email')"
-                        ></div>
-                    </div>
-                </div>
-
                 <div className='row'>
                     <button className='save'>
-                        <span className='text'>ارسال پیام</span>
+                        <span className='text'>Send</span>
                         {/* {isLoading && <span className='loadingSpinner'></span>} */}
                     </button>
                 </div>
@@ -82,11 +44,7 @@ const AddComment = ({ parent_id }) => {
                 <div className='error-msg error'>
                     {!success && errors.map(e => e.msg)}
                 </div>
-                {success && (
-                    <div className='success-msg'>
-                        پیام شما با موفقیت ارسال شد.
-                    </div>
-                )}
+                {success && <div className='success-msg'></div>}
             </div>
         </div>
     );
