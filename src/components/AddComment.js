@@ -1,19 +1,32 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSyncAlt } from '@fortawesome/free-solid-svg-icons';
-import ApiService from '../api/ApiService';
+
+import useAxiosPrivate from '../hooks/useAxiosPrivate';
+
+import useAuth from '../hooks/useAuth';
 
 // import './styles/AddComment.scss';
 const AddComment = ({ parent_id }) => {
     const [success, setSuccess] = useState(false);
     const [text, setText] = useState('');
-
+    const axiosPrivate = useAxiosPrivate();
     const [errors, setErrors] = useState([]);
+    const { auth } = useAuth();
 
     const submit = async e => {
         e.preventDefault();
         try {
-            const result = await ApiService.addComment({ text });
+            const response = await axiosPrivate.post(
+                '/comments',
+                JSON.stringify({ text, parent_id, user_id: auth?.user?.id }),
+                {
+                    headers: { 'Content-Type': 'application/json' },
+                    withCredentials: true,
+                }
+            );
+            // console.log(response.data);
+            // isMounted && setData(response.data);
         } catch (err) {
             setErrors(err.data.error);
         }
