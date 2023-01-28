@@ -12,11 +12,11 @@ const PersistLogin = () => {
         let isMounted = true;
 
         const verifyRefreshToken = async () => {
-            console.log('persist login sending refresh token');
+            // console.log('persist login sending refresh token');
             try {
                 await refresh();
             } catch (err) {
-                console.error(err);
+                // console.error(err);
             } finally {
                 isMounted && setIsLoading(false);
             }

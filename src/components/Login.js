@@ -12,22 +12,23 @@ export default function Login() {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [errMsg, setErrMsg] = useState('');
-
+    const [errors, setErrors] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
     const { setAuth } = useAuth();
 
     const submit = async e => {
         e.preventDefault();
         if (email.length === 0) {
-            setErrMsg('Please enter email address');
+            setErrors([{ msg: 'Please enter your email' }]);
             return;
         }
         if (password.length < 8) {
-            setErrMsg('Please enter your password.');
+            setErrors([{ msg: 'Please enter your password' }]);
             return;
         }
 
         try {
+            setIsLoading(true);
             const response = await axios.post(
                 '/user/login',
                 JSON.stringify({ email, password }),
@@ -42,9 +43,11 @@ export default function Login() {
             setAuth({ user, accessToken });
             setEmail('');
             setPassword('');
+            setIsLoading(false);
             navigate('/');
         } catch (err) {
-            setErrMsg(err?.response?.data?.message);
+            setErrors(err.response.data.errors);
+            setIsLoading(false);
         }
     };
     return (
@@ -74,17 +77,18 @@ export default function Login() {
                     <div className='row'>
                         <button className='save'>
                             <span className='text'>login</span>
-                            {/* {!isLoading && (
-                                <span className='text'>ورود به سایت</span>
-                            )}
                             {isLoading && (
                                 <span className='loadingSpinner'></span>
-                            )} */}
+                            )}
                         </button>
                     </div>
                 </form>
                 <div className='row'>
-                    {errMsg && <div className='errors'>{errMsg}</div>}
+                    <div className='errors'>
+                        {errors.map((e, i) => (
+                            <div key={i}>{e.msg}</div>
+                        ))}
+                    </div>
                 </div>
                 {/* <span className='spinner'></span> */}
             </div>

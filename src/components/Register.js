@@ -10,6 +10,7 @@ import { useForm } from 'react-hook-form';
 export default function Register() {
     const [success, setSuccess] = useState(false);
     const [errors, setErrors] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     const {
         register: registerForm,
@@ -18,6 +19,7 @@ export default function Register() {
     } = useForm();
     const submit = async data => {
         const { name, email, password } = data;
+        setIsLoading(true);
         try {
             const response = await axios.post(
                 '/user/register',
@@ -27,11 +29,11 @@ export default function Register() {
                     withCredentials: true,
                 }
             );
-
-            //console.log(JSON.stringify(response))
             setSuccess(true);
+            setIsLoading(false);
         } catch (err) {
-            setErrors(err.data.error);
+            setErrors(err.response.data.errors);
+            setIsLoading(false);
         }
     };
 
@@ -87,12 +89,17 @@ export default function Register() {
                 <div className='row'>
                     <button className='save'>
                         <span className='text'>Register</span>
-                        {/* {isLoading && <span className='loadingSpinner'></span>} */}
+                        {isLoading && <span className='loadingSpinner'></span>}
                     </button>
                 </div>
             </form>
+
             <div className='row'>
-                <div className='errors'>{errors.map(e => e.msg)}</div>
+                <div className='errors'>
+                    {errors.map((e, i) => (
+                        <div key={i}>{e.msg}</div>
+                    ))}
+                </div>
             </div>
         </div>
     );
