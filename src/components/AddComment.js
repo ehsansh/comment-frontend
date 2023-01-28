@@ -16,8 +16,12 @@ const AddComment = ({ parent_id }) => {
 
     const submit = async e => {
         e.preventDefault();
+        if (text.length === 0) {
+            setErrors([{ msg: 'Please enter your comment.' }]);
+            return;
+        }
         try {
-            const response = await axiosPrivate.post(
+            await axiosPrivate.post(
                 '/comments',
                 JSON.stringify({ text, parent_id, user_id: auth?.user?.id }),
                 {
@@ -25,10 +29,9 @@ const AddComment = ({ parent_id }) => {
                     withCredentials: true,
                 }
             );
-            // console.log(response.data);
-            // isMounted && setData(response.data);
+            window.location.reload();
         } catch (err) {
-            setErrors(err.data.error);
+            setErrors(err.response.data.errors);
         }
     };
 
