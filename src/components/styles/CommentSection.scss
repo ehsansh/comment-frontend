@@ -3,4 +3,12 @@
 div.CommentSection {
     width: 735px;
     margin: 70px auto;
+    div.Comments {
+        &.indented {
+            width: 90%;
+            padding-left: 5%;
+            margin-left: 5%;
+            border-left: 2px solid $light-gray;
+        }
+    }
 }

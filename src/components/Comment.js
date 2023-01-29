@@ -23,43 +23,44 @@ const Comment = ({ comment, indent }) => {
     const handleReply = id => (replyId === id ? setReplyId(0) : setReplyId(id));
 
     return (
-        <div className={`Comment ${indent ? 'indented' : ''} `}>
-            <div>
-                <div className='content'>
-                    <CommentVotes votes={votes} />
-                    <section className='comment-details'>
-                        <div className='top'>
-                            <div className='name-date'>
-                                <span className='name'>{User?.name}</span>
-                                <span className='date'>
-                                    {moment(updatedAt).fromNow()}
-                                </span>
+        <>
+            <div className='Comment'>
+                <div>
+                    <div className='content'>
+                        <CommentVotes votes={votes} />
+                        <section className='comment-details'>
+                            <div className='top'>
+                                <div className='name-date'>
+                                    <span className='name'>{User?.name}</span>
+                                    <span className='date'>
+                                        {moment(updatedAt).fromNow()}
+                                    </span>
+                                </div>
+                                <CommentBtns
+                                    myComment={comment.user_id === auth.user.id}
+                                    handleReply={handleReply}
+                                    id={comment.id}
+                                />
                             </div>
-                            <CommentBtns
-                                myComment={comment.user_id === auth.user.id}
-                                handleReply={handleReply}
-                                id={comment.id}
-                            />
-                        </div>
-                        <div className='text'>
-                            <p>{text}</p>
-                        </div>
-                    </section>
-                </div>
-
-                {replyId === id && (
-                    <div className='reply-box'>
-                        <AddComment parent_id={id.toString()} />
+                            <div className='text'>
+                                <p>{text}</p>
+                            </div>
+                        </section>
                     </div>
-                )}
+                </div>
             </div>
+            {replyId === id && (
+                <div className='reply-box'>
+                    <AddComment parent_id={id.toString()} />
+                </div>
+            )}
 
             <div>
                 {comment?.child && (
-                    <Comments comments={comment.child} indent={indent + 1} />
+                    <Comments comments={comment.child} indent={true} />
                 )}
             </div>
-        </div>
+        </>
     );
 };
 
