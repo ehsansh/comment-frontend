@@ -11,4 +11,38 @@ div.CommentSection {
             border-left: 2px solid $light-gray;
         }
     }
+    div.add-comment {
+        flex-direction: row;
+        gap: 25px;
+        padding: 25px;
+        width: 100%;
+        textarea {
+            border: 2px solid $light-gray;
+            border-radius: 10px;
+            color: $dark-blue;
+            height: 100px;
+            padding: 15px 25px;
+            position: relative;
+            resize: none;
+            scrollbar-width: none;
+            font-size: 16px;
+            &:focus {
+                outline: 1.5px solid $dark-blue;
+            }
+        }
+        button.save {
+            background: $moderate-blue;
+            border: 0;
+            border-radius: 10px;
+            color: $white;
+            cursor: pointer;
+            font-weight: 700;
+            padding: 15px 30px;
+            text-transform: uppercase;
+            transition: 0.3s;
+            &:hover {
+                opacity: 0.6;
+            }
+        }
+    }
 }

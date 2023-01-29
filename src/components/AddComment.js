@@ -8,7 +8,6 @@ import useAuth from '../hooks/useAuth';
 
 // import './styles/AddComment.scss';
 const AddComment = ({ parent_id }) => {
-    const [success, setSuccess] = useState(false);
     const [text, setText] = useState('');
     const axiosPrivate = useAxiosPrivate();
     const [errors, setErrors] = useState([]);
@@ -36,32 +35,27 @@ const AddComment = ({ parent_id }) => {
     };
 
     return (
-        <div className='content-form comment-section'>
-            <form onSubmit={submit}>
-                <div className='row'>
-                    <textarea
-                        placeholder='Add a comment'
-                        cols='45'
-                        rows='8'
-                        name='text'
-                        v-validate="'required'"
-                        value={text}
-                        onChange={e => setText(e.target.value)}
-                    ></textarea>
-                </div>
-                <div className='row'>
-                    <button className='save'>
-                        <span className='text'>Send</span>
-                        {/* {isLoading && <span className='loadingSpinner'></span>} */}
-                    </button>
-                </div>
-            </form>
-            <div className='row'>
-                <div className='error-msg error'>
-                    {!success && errors.map(e => e.msg)}
-                </div>
-                {success && <div className='success-msg'></div>}
+        <div className='content-form add-comment'>
+            <div>
+                <textarea
+                    placeholder='Add a comment'
+                    // cols='45'
+                    // rows='8'
+                    name='text'
+                    v-validate="'required'"
+                    value={text}
+                    onChange={e => setText(e.target.value)}
+                ></textarea>
             </div>
+            <div>
+                <button className='save' onClick={() => submit()}>
+                    <span className='text'>Send</span>
+                    {/* {isLoading && <span className='loadingSpinner'></span>} */}
+                </button>
+            </div>
+            {/* <div className='row'>
+                <div className='error-msg error'>{errors.map(e => e.msg)}</div>
+            </div> */}
         </div>
     );
 };
