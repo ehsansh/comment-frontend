@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
-
+import './App.scss';
 import PersistLogin from './components/PersistLogin';
 import ProtectedRoute from './components/ProtectedRoute';
 
