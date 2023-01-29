@@ -7,14 +7,13 @@ import useAxiosPrivate from '../hooks/useAxiosPrivate';
 import useAuth from '../hooks/useAuth';
 
 // import './styles/AddComment.scss';
-const AddComment = ({ parent_id }) => {
+const AddComment = ({ parent_id, btnText }) => {
     const [text, setText] = useState('');
     const axiosPrivate = useAxiosPrivate();
     const [errors, setErrors] = useState([]);
     const { auth } = useAuth();
 
-    const submit = async e => {
-        e.preventDefault();
+    const submit = async () => {
         if (text.length === 0) {
             setErrors([{ msg: 'Please enter your comment.' }]);
             return;
@@ -49,7 +48,7 @@ const AddComment = ({ parent_id }) => {
             </div>
             <div>
                 <button className='save' onClick={() => submit()}>
-                    <span className='text'>Send</span>
+                    <span className='text'>{btnText}</span>
                     {/* {isLoading && <span className='loadingSpinner'></span>} */}
                 </button>
             </div>

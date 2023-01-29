@@ -62,7 +62,7 @@ const Comment = ({ comment, indent }) => {
             </div>
             {replyId === id && (
                 <div className='reply-box'>
-                    <AddComment parent_id={id.toString()} />
+                    <AddComment parent_id={id.toString()} btnText={'reply'} />
                 </div>
             )}
 
