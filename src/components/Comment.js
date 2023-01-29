@@ -1,15 +1,9 @@
 import React, { useState } from 'react';
+import useAxiosPrivate from '../hooks/useAxiosPrivate';
 import './styles/Comment.scss';
 import Comments from './Comments';
 import useAuth from '../hooks/useAuth';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-    faTimes,
-    faTrash,
-    faPen,
-    faReply,
-} from '@fortawesome/free-solid-svg-icons';
 import AddComment from './AddComment';
 import CommentVotes from './CommentVotes';
 import CommentBtns from './CommentBtns';
@@ -19,8 +13,24 @@ const Comment = ({ comment, indent }) => {
     const { User, text, id, updatedAt, votes } = comment;
     const [replyId, setReplyId] = useState(0);
     const { auth } = useAuth();
-
+    const axiosPrivate = useAxiosPrivate();
     const handleReply = id => (replyId === id ? setReplyId(0) : setReplyId(id));
+
+    const handleDelete = async id => {
+        try {
+            await axiosPrivate.post(
+                '/comments/delete',
+                JSON.stringify({ id }),
+                {
+                    headers: { 'Content-Type': 'application/json' },
+                    withCredentials: true,
+                }
+            );
+            window.location.reload();
+        } catch (err) {
+            console.error(err);
+        }
+    };
 
     return (
         <>
@@ -39,6 +49,7 @@ const Comment = ({ comment, indent }) => {
                                 <CommentBtns
                                     myComment={comment.user_id === auth.user.id}
                                     handleReply={handleReply}
+                                    handleDelete={handleDelete}
                                     id={comment.id}
                                 />
                             </div>
