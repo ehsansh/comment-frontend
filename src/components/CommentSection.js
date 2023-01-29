@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './styles/CommentSection.scss';
 import LTT from 'list-to-tree';
 import Comments from './Comments';
 import AddComment from './AddComment';
@@ -52,13 +53,13 @@ const CommentSection = ({ type, type_id }) => {
     };
 
     return (
-        <>
+        <div className='CommentSection'>
             {comments !== undefined && (
                 <Comments comments={comments} indent={0} />
             )}
             <AddComment parent_id='0' />
             {/* <button onClick={signOut}>sign out</button> */}
-        </>
+        </div>
     );
 };
 

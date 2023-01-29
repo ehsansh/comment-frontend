@@ -1,0 +1,77 @@
+@import '../../App';
+
+div.Comment {
+    background-color: $white;
+    width: 100%;
+    padding: 25px;
+    border-radius: 10px;
+    margin: 20px 0;
+    div.content {
+        display: flex;
+    }
+    div.votes {
+        height: 125px;
+        margin-right: 20px;
+        background-color: $very-light-gray;
+        padding: 8px 12px 10px;
+        height: max-content;
+        border-radius: 10px;
+        span {
+            display: block;
+            &.num {
+                color: $moderate-blue;
+                text-align: center;
+                margin: 8px auto;
+                font-weight: 500;
+                font-size: 17px;
+            }
+            &.vote {
+                width: 20px;
+                height: 20px;
+                cursor: pointer;
+                place-items: center;
+                display: grid;
+            }
+            &:hover svg {
+                color: $dark-blue;
+            }
+        }
+    }
+    section.comment-details {
+        width: 100%;
+        div.top {
+            display: flex;
+            justify-content: space-between;
+        }
+        div.btns {
+            display: flex;
+            div.delete {
+                color: $soft-red;
+                margin-right: 5px;
+            }
+            div.edit,
+            div.reply {
+                color: $moderate-blue;
+            }
+            > div {
+                cursor: pointer;
+                padding: 5px;
+                display: flex;
+                font-weight: 700;
+                gap: 5px;
+            }
+        }
+        div.name-date {
+            display: flex;
+            align-items: center;
+            span.date {
+                margin-left: 15px;
+                color: $grayish-blue;
+            }
+            span.name {
+                color: $dark-blue;
+                font-weight: bold;
+            }
+        }
+    }
+}

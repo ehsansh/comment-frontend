@@ -1,8 +1,9 @@
 import React from 'react';
+
 import Comment from './Comment';
 const Comments = ({ comments, indent }) => {
     return (
-        <div className='content'>
+        <div className='Comments'>
             {comments.map(c => (
                 <Comment key={c.id} comment={c} indent={indent} />
             ))}

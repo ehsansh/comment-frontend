@@ -1,9 +1,18 @@
 import React, { useState } from 'react';
+import './styles/Comment.scss';
 import Comments from './Comments';
 import useAuth from '../hooks/useAuth';
-// import './styles/Comment.scss';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
+import {
+    faTimes,
+    faPlus,
+    faMinus,
+    faTrash,
+    faEdit,
+    faPen,
+    faReply,
+} from '@fortawesome/free-solid-svg-icons';
 import AddComment from './AddComment';
 const moment = require('moment'); // require
 
@@ -13,27 +22,27 @@ const Comment = ({ comment, indent }) => {
     const { auth } = useAuth();
 
     return (
-        <div className={`comment ${indent ? 'indented' : ''} `}>
+        <div className={`Comment ${indent ? 'indented' : ''} `}>
             <div>
                 <div className='content'>
                     <div className='votes'>
-                        <span className='up-vote'>
+                        <span className='up-vote vote'>
                             <FontAwesomeIcon
                                 icon={faPlus}
                                 size='1x'
-                                color='#363c50'
+                                color='hsl(239, 57%, 85%)'
                             />
                         </span>
                         <span className='num'>{votes}</span>
-                        <span className='up-vote'>
+                        <span className='down-vote vote'>
                             <FontAwesomeIcon
                                 icon={faMinus}
                                 size='1x'
-                                color='#363c50'
+                                color='hsl(239, 57%, 85%)'
                             />
                         </span>
                     </div>
-                    <section>
+                    <section className='comment-details'>
                         <div className='top'>
                             <div className='name-date'>
                                 <span className='name'>{User?.name}</span>
@@ -44,8 +53,22 @@ const Comment = ({ comment, indent }) => {
                             </div>
                             {comment.user_id === auth.user.id ? (
                                 <div className='btns'>
-                                    <div className='delete'>Delete</div>
-                                    <div className='edit'>Edit</div>
+                                    <div className='delete'>
+                                        <FontAwesomeIcon
+                                            icon={faTrash}
+                                            size='1x'
+                                            color='hsl(358, 79%, 66%)'
+                                        />
+                                        Delete
+                                    </div>
+                                    <div className='edit'>
+                                        <FontAwesomeIcon
+                                            icon={faPen}
+                                            size='1x'
+                                            color='hsl(238, 40%, 52%)'
+                                        />
+                                        Edit
+                                    </div>
                                 </div>
                             ) : (
                                 <div className='btns'>
@@ -53,6 +76,11 @@ const Comment = ({ comment, indent }) => {
                                         className='reply'
                                         onClick={() => setReplyId(id)}
                                     >
+                                        <FontAwesomeIcon
+                                            icon={faReply}
+                                            size='1x'
+                                            color='hsl(238, 40%, 52%)'
+                                        />
                                         Reply
                                     </div>
                                 </div>
