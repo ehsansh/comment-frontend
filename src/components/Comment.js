@@ -6,14 +6,12 @@ import useAuth from '../hooks/useAuth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faTimes,
-    faPlus,
-    faMinus,
     faTrash,
-    faEdit,
     faPen,
     faReply,
 } from '@fortawesome/free-solid-svg-icons';
 import AddComment from './AddComment';
+import CommentVotes from './CommentVotes';
 const moment = require('moment'); // require
 
 const Comment = ({ comment, indent }) => {
@@ -25,23 +23,7 @@ const Comment = ({ comment, indent }) => {
         <div className={`Comment ${indent ? 'indented' : ''} `}>
             <div>
                 <div className='content'>
-                    <div className='votes'>
-                        <span className='up-vote vote'>
-                            <FontAwesomeIcon
-                                icon={faPlus}
-                                size='1x'
-                                color='hsl(239, 57%, 85%)'
-                            />
-                        </span>
-                        <span className='num'>{votes}</span>
-                        <span className='down-vote vote'>
-                            <FontAwesomeIcon
-                                icon={faMinus}
-                                size='1x'
-                                color='hsl(239, 57%, 85%)'
-                            />
-                        </span>
-                    </div>
+                    <CommentVotes votes={votes} />
                     <section className='comment-details'>
                         <div className='top'>
                             <div className='name-date'>
