@@ -73,5 +73,9 @@ div.Comment {
                 font-weight: bold;
             }
         }
+        p {
+            color: $grayish-blue;
+            line-height: 1.5;
+        }
     }
 }
