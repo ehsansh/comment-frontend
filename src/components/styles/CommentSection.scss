@@ -3,7 +3,25 @@
 div.CommentSection {
     width: 735px;
     margin: 0 auto;
-    padding-top: 70px;
+    padding: 70px 0;
+    textarea {
+        border: 2px solid $light-gray;
+        border-radius: 10px;
+        color: $grayish-blue;
+        height: 100px;
+        padding: 15px 25px;
+        position: relative;
+        resize: none;
+        scrollbar-width: none;
+        font-size: 16px;
+        line-height: 1.5;
+        // box-sizing: border-box;
+        font-family: inherit;
+        width: 85%;
+        &:focus {
+            outline: 1.5px solid $dark-blue;
+        }
+    }
     div.Comments {
         &.indented {
             width: 90%;
@@ -26,22 +44,7 @@ div.CommentSection {
         > :first-child {
             flex-grow: 1;
         }
-        textarea {
-            border: 2px solid $light-gray;
-            border-radius: 10px;
-            color: $dark-blue;
-            height: 100px;
-            padding: 15px 25px;
-            position: relative;
-            resize: none;
-            scrollbar-width: none;
-            font-size: 16px;
-            box-sizing: border-box;
-            width: 95%;
-            &:focus {
-                outline: 1.5px solid $dark-blue;
-            }
-        }
+
         button.save {
             background: $moderate-blue;
             border: 0;

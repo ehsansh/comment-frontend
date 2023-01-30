@@ -2,7 +2,13 @@ import React from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faPen, faReply } from '@fortawesome/free-solid-svg-icons';
-const CommentBtns = ({ myComment, handleReply, setDeleteId, id }) => {
+const CommentBtns = ({
+    myComment,
+    handleReply,
+    handleEdit,
+    setDeleteId,
+    id,
+}) => {
     return (
         <div className='btns'>
             {myComment ? (
@@ -15,7 +21,7 @@ const CommentBtns = ({ myComment, handleReply, setDeleteId, id }) => {
                         />
                         Delete
                     </div>
-                    <div className='edit'>
+                    <div onClick={() => handleEdit(id)} className='edit'>
                         <FontAwesomeIcon
                             icon={faPen}
                             size='1x'

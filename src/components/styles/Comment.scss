@@ -74,9 +74,35 @@ div.Comment {
                 font-weight: bold;
             }
         }
+    }
+    div.text {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
         p {
             color: $grayish-blue;
             line-height: 1.5;
+        }
+        textarea {
+            padding: 10px 15px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        button {
+            align-self: flex-end;
+            background-color: $moderate-blue;
+            font-size: 16px;
+            border: 0;
+            border-radius: 10px;
+            color: #fff;
+            cursor: pointer;
+            font-weight: 700;
+            padding: 15px 30px;
+            text-transform: uppercase;
+            transition: 0.3s;
+            &:hover {
+                opacity: 0.65;
+            }
         }
     }
 }

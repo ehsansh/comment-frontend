@@ -15,9 +15,13 @@ const Comment = ({ comment }) => {
     const { User, text, id, updatedAt, votes } = comment;
     const [replyId, setReplyId] = useState(0);
     const [deleteId, setDeleteId] = useState(0);
+    const [editId, setEditId] = useState(0);
+    const [commentText, setCommentText] = useState(text);
+
     const { auth } = useAuth();
     const axiosPrivate = useAxiosPrivate();
     const handleReply = id => (replyId === id ? setReplyId(0) : setReplyId(id));
+    const handleEdit = id => (editId === id ? setEditId(0) : setEditId(id));
 
     const handleDelete = async id => {
         try {
@@ -33,6 +37,10 @@ const Comment = ({ comment }) => {
         } catch (err) {
             console.error(err);
         }
+    };
+
+    const handleUpdate = async () => {
+        console.log(commentText, editId);
     };
 
     return (
@@ -52,12 +60,27 @@ const Comment = ({ comment }) => {
                                 <CommentBtns
                                     myComment={comment.user_id === auth.user.id}
                                     handleReply={handleReply}
+                                    handleEdit={handleEdit}
                                     setDeleteId={setDeleteId}
                                     id={comment.id}
                                 />
                             </div>
                             <div className='text'>
-                                <p>{text}</p>
+                                {editId === 0 ? (
+                                    <p>{text}</p>
+                                ) : (
+                                    <>
+                                        <textarea
+                                            defaultValue={commentText}
+                                            onChange={e =>
+                                                setCommentText(e.target.value)
+                                            }
+                                        ></textarea>
+                                        <button onClick={handleUpdate}>
+                                            update
+                                        </button>
+                                    </>
+                                )}
                             </div>
                         </section>
                     </div>
