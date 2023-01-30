@@ -40,7 +40,20 @@ const Comment = ({ comment }) => {
     };
 
     const handleUpdate = async () => {
-        console.log(commentText, editId);
+        try {
+            await axiosPrivate.post(
+                '/comments/update',
+                JSON.stringify({ id: editId, text: commentText }),
+                {
+                    headers: { 'Content-Type': 'application/json' },
+                    withCredentials: true,
+                }
+            );
+            window.location.reload();
+            // setEditId(0);
+        } catch (err) {
+            console.error(err);
+        }
     };
 
     return (
