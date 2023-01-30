@@ -59,8 +59,7 @@ const CommentSection = ({ type, type_id }) => {
                 <Comments comments={comments} indent={false} />
             )}
             <AddComment parent_id='0' btnText={'send'} />
-            {/* <button onClick={signOut}>sign out</button> */}
-            {/* <CommentDeleteWindow /> */}
+            <button onClick={signOut}>sign out</button>
         </div>
     );
 };

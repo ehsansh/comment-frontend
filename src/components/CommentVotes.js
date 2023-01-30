@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import useAxiosPrivate from '../hooks/useAxiosPrivate';
 const CommentVotes = ({ votes, userId, commentId }) => {
     const axiosPrivate = useAxiosPrivate();
+    const [finalVote, setFinalVote] = useState(votes);
 
     const handleVote = async vote => {
         try {
-            await axiosPrivate.post(
+            const response = await axiosPrivate.post(
                 '/comments/vote',
                 JSON.stringify({ commentId, userId, vote }),
                 {
@@ -15,7 +16,7 @@ const CommentVotes = ({ votes, userId, commentId }) => {
                     withCredentials: true,
                 }
             );
-            window.location.reload();
+            setFinalVote(finalVote + response.data.vote);
         } catch (err) {
             console.error(err);
         }
@@ -30,7 +31,7 @@ const CommentVotes = ({ votes, userId, commentId }) => {
                     color='hsl(239, 57%, 85%)'
                 />
             </span>
-            <span className='num'>{votes}</span>
+            <span className='num'>{finalVote}</span>
             <span onClick={() => handleVote(-1)} className='down-vote vote'>
                 <FontAwesomeIcon
                     icon={faMinus}
