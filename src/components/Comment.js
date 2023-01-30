@@ -61,7 +61,11 @@ const Comment = ({ comment }) => {
             <div className='Comment'>
                 <div>
                     <div className='content'>
-                        <CommentVotes votes={votes} />
+                        <CommentVotes
+                            votes={votes}
+                            userId={User.id}
+                            commentId={comment.id}
+                        />
                         <section className='comment-details'>
                             <div className='top'>
                                 <div className='name-date'>
