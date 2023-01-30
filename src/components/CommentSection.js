@@ -8,6 +8,7 @@ import AddComment from './AddComment';
 import useAxiosPrivate from '../hooks/useAxiosPrivate';
 
 import useLogout from '../hooks/useLogout';
+import CommentDeleteWindow from './CommentDeleteWindow';
 
 const CommentSection = ({ type, type_id }) => {
     const [data, setData] = useState([]);
@@ -59,6 +60,7 @@ const CommentSection = ({ type, type_id }) => {
             )}
             <AddComment parent_id='0' btnText={'add'} />
             {/* <button onClick={signOut}>sign out</button> */}
+            <CommentDeleteWindow />
         </div>
     );
 };

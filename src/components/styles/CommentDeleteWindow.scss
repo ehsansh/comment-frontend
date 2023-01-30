@@ -1,0 +1,55 @@
+@import '../../App';
+div.CommentDeleteWindow {
+    position: fixed;
+    z-index: 9998;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    div.content {
+        padding: 30px;
+        width: 400px;
+        height: auto;
+        background-color: $white;
+        border-radius: 10px;
+        box-sizing: border-box;
+        h4 {
+            font-size: 19px;
+            font-weight: 700;
+            color: $dark-blue;
+            margin: 0;
+        }
+        p {
+            color: $grayish-blue;
+            line-height: 1.5;
+        }
+        div.btns {
+            display: flex;
+            justify-content: space-between;
+            button {
+                border: none;
+                border-radius: 10px;
+                color: $white;
+                cursor: pointer;
+                font-weight: 500;
+                padding: 15px 20px;
+                text-transform: uppercase;
+                transition: 0.3s;
+                font-size: 16px;
+                &:hover {
+                    opacity: 0.65;
+                }
+                &.yes {
+                    background-color: $soft-red;
+                }
+                &.no {
+                    background-color: $dark-blue;
+                }
+            }
+        }
+    }
+}

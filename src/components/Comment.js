@@ -7,6 +7,7 @@ import useAuth from '../hooks/useAuth';
 import AddComment from './AddComment';
 import CommentVotes from './CommentVotes';
 import CommentBtns from './CommentBtns';
+
 const moment = require('moment'); // require
 
 const Comment = ({ comment, indent }) => {

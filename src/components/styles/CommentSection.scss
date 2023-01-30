@@ -2,7 +2,8 @@
 
 div.CommentSection {
     width: 735px;
-    margin: 70px auto;
+    margin: 0 auto;
+    padding-top: 70px;
     div.Comments {
         &.indented {
             width: 90%;
