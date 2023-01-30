@@ -1,7 +1,7 @@
 import React from 'react';
-
 import Comment from './Comment';
-const Comments = ({ comments, indent }) => {
+
+const Comments = ({ indent, comments }) => {
     return (
         <div className={`Comments ${indent ? 'indented' : ''} `}>
             {comments.map(c => (

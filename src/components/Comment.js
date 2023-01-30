@@ -3,7 +3,7 @@ import useAxiosPrivate from '../hooks/useAxiosPrivate';
 import './styles/Comment.scss';
 import Comments from './Comments';
 import useAuth from '../hooks/useAuth';
-
+import useComments from '../hooks/useComments';
 import AddComment from './AddComment';
 import CommentVotes from './CommentVotes';
 import CommentBtns from './CommentBtns';
@@ -17,6 +17,7 @@ const Comment = ({ comment }) => {
     const [deleteId, setDeleteId] = useState(0);
     const [editId, setEditId] = useState(0);
     const [commentText, setCommentText] = useState(text);
+    const { deleteComment } = useComments();
 
     const { auth } = useAuth();
     const axiosPrivate = useAxiosPrivate();
@@ -33,7 +34,8 @@ const Comment = ({ comment }) => {
                     withCredentials: true,
                 }
             );
-            window.location.reload();
+            deleteComment(id);
+            // window.location.reload();
         } catch (err) {
             console.error(err);
         }
@@ -49,8 +51,7 @@ const Comment = ({ comment }) => {
                     withCredentials: true,
                 }
             );
-            window.location.reload();
-            // setEditId(0);
+            setEditId(0);
         } catch (err) {
             console.error(err);
         }
@@ -84,7 +85,7 @@ const Comment = ({ comment }) => {
                             </div>
                             <div className='text'>
                                 {editId === 0 ? (
-                                    <p>{text}</p>
+                                    <p>{commentText}</p>
                                 ) : (
                                     <>
                                         <textarea
@@ -105,7 +106,11 @@ const Comment = ({ comment }) => {
             </div>
             {replyId === id && (
                 <div className='reply-box'>
-                    <AddComment parent_id={id.toString()} btnText={'reply'} />
+                    <AddComment
+                        parent_id={id.toString()}
+                        btnText={'reply'}
+                        setReplyId={setReplyId}
+                    />
                 </div>
             )}
 

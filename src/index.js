@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import { AuthContextProvider } from './context/AuthContextProvider';
+import { CommentContextProvider } from './context/CommentContextProvider';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -11,7 +12,9 @@ root.render(
     <React.StrictMode>
         <BrowserRouter>
             <AuthContextProvider>
-                <App />
+                <CommentContextProvider>
+                    <App />
+                </CommentContextProvider>
             </AuthContextProvider>
         </BrowserRouter>
     </React.StrictMode>
