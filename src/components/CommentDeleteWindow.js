@@ -2,7 +2,7 @@ import React from 'react';
 
 import './styles/CommentDeleteWindow.scss';
 
-const CommentDeleteWindow = () => {
+const CommentDeleteWindow = ({ setDeleteId, id, handleDelete }) => {
     return (
         <div className='CommentDeleteWindow'>
             <div className='content'>
@@ -12,8 +12,12 @@ const CommentDeleteWindow = () => {
                     remove the comment and can't be undone.
                 </p>
                 <div className='btns'>
-                    <button className='no'>No, cancel</button>
-                    <button className='yes'>Yes, delete</button>
+                    <button className='no' onClick={() => setDeleteId(0)}>
+                        No, cancel
+                    </button>
+                    <button className='yes' onClick={() => handleDelete(id)}>
+                        Yes, delete
+                    </button>
                 </div>
             </div>
         </div>

@@ -7,12 +7,14 @@ import useAuth from '../hooks/useAuth';
 import AddComment from './AddComment';
 import CommentVotes from './CommentVotes';
 import CommentBtns from './CommentBtns';
+import CommentDeleteWindow from './CommentDeleteWindow';
 
 const moment = require('moment'); // require
 
-const Comment = ({ comment, indent }) => {
+const Comment = ({ comment }) => {
     const { User, text, id, updatedAt, votes } = comment;
     const [replyId, setReplyId] = useState(0);
+    const [deleteId, setDeleteId] = useState(0);
     const { auth } = useAuth();
     const axiosPrivate = useAxiosPrivate();
     const handleReply = id => (replyId === id ? setReplyId(0) : setReplyId(id));
@@ -50,7 +52,7 @@ const Comment = ({ comment, indent }) => {
                                 <CommentBtns
                                     myComment={comment.user_id === auth.user.id}
                                     handleReply={handleReply}
-                                    handleDelete={handleDelete}
+                                    setDeleteId={setDeleteId}
                                     id={comment.id}
                                 />
                             </div>
@@ -72,6 +74,13 @@ const Comment = ({ comment, indent }) => {
                     <Comments comments={comment.child} indent={true} />
                 )}
             </div>
+            {deleteId !== 0 && (
+                <CommentDeleteWindow
+                    setDeleteId={setDeleteId}
+                    handleDelete={handleDelete}
+                    id={comment.id}
+                />
+            )}
         </>
     );
 };

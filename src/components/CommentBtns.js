@@ -2,12 +2,12 @@ import React from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faPen, faReply } from '@fortawesome/free-solid-svg-icons';
-const CommentBtns = ({ myComment, handleReply, handleDelete, id }) => {
+const CommentBtns = ({ myComment, handleReply, setDeleteId, id }) => {
     return (
         <div className='btns'>
             {myComment ? (
                 <>
-                    <div onClick={() => handleDelete(id)} className='delete'>
+                    <div onClick={() => setDeleteId(id)} className='delete'>
                         <FontAwesomeIcon
                             icon={faTrash}
                             size='1x'

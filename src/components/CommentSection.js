@@ -60,7 +60,7 @@ const CommentSection = ({ type, type_id }) => {
             )}
             <AddComment parent_id='0' btnText={'add'} />
             {/* <button onClick={signOut}>sign out</button> */}
-            <CommentDeleteWindow />
+            {/* <CommentDeleteWindow /> */}
         </div>
     );
 };
