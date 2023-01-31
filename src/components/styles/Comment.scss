@@ -114,3 +114,19 @@ div.Comment {
         }
     }
 }
+
+@media (max-width: 770px) {
+    div.Comment {
+        section.comment-details {
+            div.top {
+                flex-direction: column;
+            }
+            div.btns {
+                margin: 14px 0 5px;
+                > div {
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+}

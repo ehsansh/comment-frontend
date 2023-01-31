@@ -53,3 +53,17 @@ div.CommentDeleteWindow {
         }
     }
 }
+
+@media (max-width: 500px) {
+    div.CommentDeleteWindow {
+        div.content {
+            width: 95%;
+            div.btns {
+                button {
+                    padding: 7px 8px;
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+}
