@@ -4,8 +4,9 @@ import useAxiosPrivate from '../hooks/useAxiosPrivate';
 import useAuth from '../hooks/useAuth';
 import useComments from '../hooks/useComments';
 // import './styles/AddComment.scss';
-const AddComment = ({ parent_id, btnText, setReplyId }) => {
-    const [text, setText] = useState('');
+const AddComment = ({ parent_id, btnText, setReplyId, parent_name }) => {
+    let defaultText = btnText === 'reply' ? parent_name : '';
+    const [text, setText] = useState(defaultText);
     const axiosPrivate = useAxiosPrivate();
     const [errors, setErrors] = useState([]);
     const { auth } = useAuth();
@@ -39,8 +40,6 @@ const AddComment = ({ parent_id, btnText, setReplyId }) => {
             <div>
                 <textarea
                     placeholder='Add a comment'
-                    // cols='45'
-                    // rows='8'
                     name='text'
                     v-validate="'required'"
                     value={text}

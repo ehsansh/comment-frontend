@@ -108,6 +108,7 @@ const Comment = ({ comment, indent }) => {
                 <div className='reply-box'>
                     <AddComment
                         parent_id={id.toString()}
+                        parent_name={`@${User?.name.replaceAll(' ', '-')}`}
                         btnText={'reply'}
                         setReplyId={setReplyId}
                     />
