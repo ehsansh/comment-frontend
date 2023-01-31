@@ -41,10 +41,7 @@ const CommentSection = () => {
 
     return (
         <div className='CommentSection'>
-            {/* {comments !== undefined && (
-                <Comments comments={comments} indent={false} />
-            )} */}
-            <Comments comments={comments} indent={false} />
+            <Comments comments={comments} indent={0} />
             <AddComment parent_id='0' btnText={'send'} />
             <button onClick={signOut}>sign out</button>
         </div>

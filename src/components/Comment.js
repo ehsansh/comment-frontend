@@ -11,7 +11,7 @@ import CommentDeleteWindow from './CommentDeleteWindow';
 
 const moment = require('moment'); // require
 
-const Comment = ({ comment }) => {
+const Comment = ({ comment, indent }) => {
     const { User, text, id, updatedAt, votes } = comment;
     const [replyId, setReplyId] = useState(0);
     const [deleteId, setDeleteId] = useState(0);
@@ -116,7 +116,7 @@ const Comment = ({ comment }) => {
 
             <div>
                 {comment?.child && (
-                    <Comments comments={comment.child} indent={true} />
+                    <Comments comments={comment.child} indent={indent + 1} />
                 )}
             </div>
             {deleteId !== 0 && (

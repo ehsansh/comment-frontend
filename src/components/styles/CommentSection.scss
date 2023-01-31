@@ -62,3 +62,16 @@ div.CommentSection {
         }
     }
 }
+
+@media (max-width: 770px) {
+    div.CommentSection {
+        width: 95%;
+        box-sizing: border-box;
+        div.add-comment {
+            display: block;
+            button.save {
+                margin-top: 13px;
+            }
+        }
+    }
+}
