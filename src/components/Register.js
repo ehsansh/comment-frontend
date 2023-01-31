@@ -39,14 +39,18 @@ export default function Register() {
 
     const form = (
         <div className='content-form'>
+            <div className='row'>
+                <h1>Register</h1>
+            </div>
             <form onSubmit={handleSubmit(submit)}>
                 <div className='row'>
-                    <label>name</label>
                     <input
                         type='text'
                         {...registerForm('name', {
                             required: true,
                         })}
+                        autoComplete='off'
+                        placeholder='Name'
                     />
                     <div className='error'>
                         {formErrors.name && <p>Please enter your name.</p>}
@@ -54,7 +58,6 @@ export default function Register() {
                 </div>
 
                 <div className='row'>
-                    <label>email</label>
                     <input
                         type='type'
                         {...registerForm('email', {
@@ -62,6 +65,8 @@ export default function Register() {
                             pattern:
                                 /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
                         })}
+                        autoComplete='off'
+                        placeholder='Email'
                     />
                     <div className='error'>
                         {formErrors.email && (
@@ -71,13 +76,13 @@ export default function Register() {
                 </div>
 
                 <div className='row'>
-                    <label>Password</label>
                     <input
                         type='password'
                         {...registerForm('password', {
                             required: true,
                             minLength: 8,
                         })}
+                        placeholder='Password'
                     />
                     <div className='error'>
                         {formErrors.password && (
@@ -105,14 +110,14 @@ export default function Register() {
     );
 
     const successMsg = (
-        <div className='content-success'>
-            دوست عزیز ثبت نام شما با موفقیت انجام شد.
-            <br />
-            لطفا از طریق صفحه ورود به سایت و با وارد کردن شماره موبایل و رمز
-            عبور وارد حساب کاربری خود شوید.
-            <div className='link'>
-                <Link to='/login'>ورود به سایت</Link>
-            </div>
+        <div className='content-form'>
+            <p>
+                You have been registered successfully!
+                <br />
+                Now you can
+                <Link to='/login'> log in </Link>
+                into your account.
+            </p>
         </div>
     );
 

@@ -53,23 +53,27 @@ export default function Login() {
     return (
         <div>
             <div className='content-form'>
+                <div className='row'>
+                    <h1>Login</h1>
+                </div>
                 <form onSubmit={submit}>
                     <div className='row'>
-                        <label>Email:</label>
                         <input
                             type='text'
                             name='email'
                             value={email}
                             onChange={e => setEmail(e.target.value)}
+                            placeholder='Email'
+                            autoComplete='off'
                         />
                         <div className='error'></div>
                     </div>
 
                     <div className='row'>
-                        <label>Password:</label>
                         <input
                             type='password'
                             name='password'
+                            placeholder='Password'
                             value={password}
                             onChange={e => setPassword(e.target.value)}
                         />

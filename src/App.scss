@@ -19,3 +19,60 @@ body {
     margin: 0;
     position: relative;
 }
+
+div.content-form {
+    width: 377px;
+    margin: 100px auto;
+    padding: 43px 0 54px;
+    // background: rgb(222, 196, 252);
+    // background: linear-gradient(
+    //     90deg,
+    //     rgba(222, 196, 252, 1) 0%,
+    //     rgba(0, 212, 255, 1) 100%
+    // );
+    border-radius: 50px;
+    border: 1px solid $light-gray;
+    background-color: $white;
+    h1 {
+        font-size: 22px;
+        margin: 0 auto 34px;
+        color: $dark-blue;
+    }
+    div.row {
+        display: flex;
+        justify-content: center;
+    }
+    input {
+        width: 240px;
+        height: 40px;
+        border-radius: 67px;
+        margin-bottom: 18px;
+        border: 1px solid $light-gray;
+        padding-left: 20px;
+        font-family: 'Rubik';
+        color: $dark-blue;
+        &:focus {
+            outline: 1px solid $dark-blue;
+        }
+    }
+    button {
+        width: 240px;
+        height: 43px;
+        display: block;
+        background: $moderate-blue;
+        color: $white;
+        border-radius: 77px;
+        margin-top: 6px;
+        border: none;
+        transition: 0.2s;
+        span {
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        &:hover {
+            opacity: 0.8;
+            cursor: pointer;
+        }
+    }
+}
