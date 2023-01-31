@@ -24,6 +24,12 @@ const Comment = ({ comment, indent }) => {
     const handleReply = id => (replyId === id ? setReplyId(0) : setReplyId(id));
     const handleEdit = id => (editId === id ? setEditId(0) : setEditId(id));
 
+    let replyName = '';
+    if (indent > 0) {
+        let matches = commentText.match(/@\w+/g);
+        if (matches) replyName = matches[0];
+    }
+
     const handleDelete = async id => {
         try {
             await axiosPrivate.post(
@@ -85,7 +91,23 @@ const Comment = ({ comment, indent }) => {
                             </div>
                             <div className='text'>
                                 {editId === 0 ? (
-                                    <p>{commentText}</p>
+                                    <p>
+                                        {replyName ? (
+                                            <>
+                                                <span className='replyName'>
+                                                    {replyName}
+                                                </span>
+                                                <>
+                                                    {commentText.replace(
+                                                        replyName,
+                                                        ''
+                                                    )}
+                                                </>
+                                            </>
+                                        ) : (
+                                            <>{commentText}</>
+                                        )}
+                                    </p>
                                 ) : (
                                     <>
                                         <textarea

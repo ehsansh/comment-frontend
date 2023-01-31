@@ -87,6 +87,10 @@ div.Comment {
             color: $grayish-blue;
             line-height: 1.5;
         }
+        span.replyName {
+            color: $moderate-blue;
+            font-weight: 700;
+        }
         textarea {
             padding: 10px 15px;
             width: 100%;
