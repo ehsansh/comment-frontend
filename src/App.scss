@@ -20,33 +20,50 @@ body {
     position: relative;
 }
 
-div.content-form {
+div.auth-form {
     width: 377px;
     margin: 100px auto;
     padding: 43px 0 54px;
-    // background: rgb(222, 196, 252);
-    // background: linear-gradient(
-    //     90deg,
-    //     rgba(222, 196, 252, 1) 0%,
-    //     rgba(0, 212, 255, 1) 100%
-    // );
     border-radius: 50px;
     border: 1px solid $light-gray;
     background-color: $white;
+    p {
+        color: $dark-blue;
+        text-align: center;
+        margin-top: 50px;
+        a {
+            text-decoration: none;
+            color: $moderate-blue;
+        }
+    }
+    div.errors {
+        color: $soft-red;
+    }
     h1 {
         font-size: 22px;
         margin: 0 auto 34px;
         color: $dark-blue;
+        text-align: center;
     }
     div.row {
-        display: flex;
-        justify-content: center;
+        position: relative;
+        text-align: center;
+        div.error {
+            // position: absolute;
+            color: $soft-red;
+            font-size: 14px;
+        }
+        div.errors {
+            margin-top: 19px;
+        }
     }
     input {
         width: 240px;
         height: 40px;
         border-radius: 67px;
-        margin-bottom: 18px;
+        // margin-bottom: 18px;
+        display: block;
+        margin: 18px auto 4px;
         border: 1px solid $light-gray;
         padding-left: 20px;
         font-family: 'Rubik';
@@ -62,7 +79,7 @@ div.content-form {
         background: $moderate-blue;
         color: $white;
         border-radius: 77px;
-        margin-top: 6px;
+        margin: 17px auto 0;
         border: none;
         transition: 0.2s;
         span {
@@ -74,5 +91,10 @@ div.content-form {
             opacity: 0.8;
             cursor: pointer;
         }
+    }
+}
+@media (max-width: 400px) {
+    div.auth-form {
+        width: 95%;
     }
 }

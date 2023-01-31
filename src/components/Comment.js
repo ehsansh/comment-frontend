@@ -69,7 +69,7 @@ const Comment = ({ comment, indent }) => {
                 <div>
                     <div className='content'>
                         <CommentVotes
-                            votes={votes}
+                            votes={+votes}
                             userId={User.id}
                             commentId={comment.id}
                         />

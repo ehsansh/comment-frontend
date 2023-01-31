@@ -52,7 +52,7 @@ export default function Login() {
     };
     return (
         <div>
-            <div className='content-form'>
+            <div className='auth-form'>
                 <div className='row'>
                     <h1>Login</h1>
                 </div>
@@ -65,6 +65,7 @@ export default function Login() {
                             onChange={e => setEmail(e.target.value)}
                             placeholder='Email'
                             autoComplete='off'
+                            onFocus={() => setErrors([])}
                         />
                         <div className='error'></div>
                     </div>
@@ -76,6 +77,7 @@ export default function Login() {
                             placeholder='Password'
                             value={password}
                             onChange={e => setPassword(e.target.value)}
+                            onFocus={() => setErrors([])}
                         />
                     </div>
                     <div className='row'>
@@ -87,6 +89,12 @@ export default function Login() {
                         </button>
                     </div>
                 </form>
+                <div className='row'>
+                    <p>
+                        Not registered yet?
+                        <Link to='/register'> register now</Link>
+                    </p>
+                </div>
                 <div className='row'>
                     <div className='errors'>
                         {errors.map((e, i) => (

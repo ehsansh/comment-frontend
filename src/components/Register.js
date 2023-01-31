@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from '../api/axios';
-
+import useAuth from '../hooks/useAuth';
 // import './styles/Register.scss';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faSyncAlt } from '@fortawesome/free-solid-svg-icons';
 import { useForm } from 'react-hook-form';
 export default function Register() {
+    const navigate = useNavigate();
     const [success, setSuccess] = useState(false);
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-
+    const { setAuth } = useAuth();
     const {
         register: registerForm,
         handleSubmit,
@@ -29,8 +30,12 @@ export default function Register() {
                     withCredentials: true,
                 }
             );
-            setSuccess(true);
+
+            const accessToken = response?.data?.accessToken;
+            const user = response?.data?.user;
+            setAuth({ user, accessToken });
             setIsLoading(false);
+            navigate('/');
         } catch (err) {
             setErrors(err.response.data.errors);
             setIsLoading(false);
@@ -38,7 +43,7 @@ export default function Register() {
     };
 
     const form = (
-        <div className='content-form'>
+        <div className='auth-form'>
             <div className='row'>
                 <h1>Register</h1>
             </div>
@@ -51,9 +56,10 @@ export default function Register() {
                         })}
                         autoComplete='off'
                         placeholder='Name'
+                        onFocus={() => setErrors([])}
                     />
                     <div className='error'>
-                        {formErrors.name && <p>Please enter your name.</p>}
+                        {formErrors.name && <>Please enter your name.</>}
                     </div>
                 </div>
 
@@ -67,10 +73,11 @@ export default function Register() {
                         })}
                         autoComplete='off'
                         placeholder='Email'
+                        onFocus={() => setErrors([])}
                     />
                     <div className='error'>
                         {formErrors.email && (
-                            <p>Please enter your email address.</p>
+                            <>Please enter your email address.</>
                         )}
                     </div>
                 </div>
@@ -83,10 +90,11 @@ export default function Register() {
                             minLength: 8,
                         })}
                         placeholder='Password'
+                        onFocus={() => setErrors([])}
                     />
                     <div className='error'>
                         {formErrors.password && (
-                            <p>Password should at least be 8 characters</p>
+                            <>Password should at least be 8 characters</>
                         )}
                     </div>
                 </div>
