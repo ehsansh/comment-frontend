@@ -61,6 +61,28 @@ div.CommentSection {
             }
         }
     }
+    div.footer {
+        display: block;
+        // justify-content: center;
+        color: $grayish-blue;
+        text-align: center;
+        margin: 62px auto 0;
+        button {
+            background: $moderate-blue;
+            border: 0;
+            border-radius: 10px;
+            color: $white;
+            cursor: pointer;
+            font-weight: 700;
+            padding: 10px 18px;
+            text-transform: uppercase;
+            transition: 0.3s;
+            font-size: 14px;
+            &:hover {
+                opacity: 0.6;
+            }
+        }
+    }
 }
 
 @media (max-width: 770px) {

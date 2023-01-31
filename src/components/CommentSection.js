@@ -43,7 +43,15 @@ const CommentSection = () => {
         <div className='CommentSection'>
             <Comments comments={comments} indent={0} />
             <AddComment parent_id='0' btnText={'send'} />
-            <button onClick={signOut}>sign out</button>
+            <div className='footer'>
+                <p>
+                    If you want you can sign out by pressing the sign out
+                    button.
+                </p>
+                <button className='save' onClick={signOut}>
+                    sign out
+                </button>
+            </div>
         </div>
     );
 };
