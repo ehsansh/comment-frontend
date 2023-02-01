@@ -16,7 +16,10 @@ const Comment = ({ comment, indent }) => {
     const [replyId, setReplyId] = useState(0);
     const [deleteId, setDeleteId] = useState(0);
     const [editId, setEditId] = useState(0);
-    const [commentText, setCommentText] = useState(text);
+    // &#x27; is html equivalent for apostrophe that's why we replace it.
+    const [commentText, setCommentText] = useState(
+        text.replaceAll('&#x27;', "'")
+    );
     const { deleteComment } = useComments();
 
     const { auth } = useAuth();
@@ -41,7 +44,6 @@ const Comment = ({ comment, indent }) => {
                 }
             );
             deleteComment(id);
-            // window.location.reload();
         } catch (err) {
             console.error(err);
         }
@@ -70,7 +72,7 @@ const Comment = ({ comment, indent }) => {
                     <div className='content'>
                         <CommentVotes
                             votes={+votes}
-                            userId={User.id}
+                            userId={auth.user.id}
                             commentId={comment.id}
                         />
                         <section className='comment-details'>

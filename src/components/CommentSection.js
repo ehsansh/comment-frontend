@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './styles/CommentSection.scss';
 import Comments from './Comments';
@@ -16,7 +16,6 @@ const CommentSection = () => {
     useEffect(() => {
         let isMounted = true;
         const controller = new AbortController();
-        console.log('render');
         const getComments = async () => {
             try {
                 const response = await axiosPrivate.get('/comments', {
@@ -41,7 +40,8 @@ const CommentSection = () => {
 
     return (
         <div className='CommentSection'>
-            <Comments comments={comments} indent={0} />
+            {comments && <Comments comments={comments} indent={0} />}
+
             <AddComment parent_id='0' btnText={'send'} />
             <div className='footer'>
                 <p>

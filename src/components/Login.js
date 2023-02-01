@@ -1,12 +1,7 @@
-import React, { useState } from 'react';
-
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-
 import useAuth from '../hooks/useAuth';
-
 import axios from '../api/axios';
-
-// import './styles/Login.scss';
 
 export default function Login() {
     const navigate = useNavigate();
@@ -17,6 +12,7 @@ export default function Login() {
     const { setAuth } = useAuth();
 
     const submit = async e => {
+        if (isLoading) return;
         e.preventDefault();
         if (email.length === 0) {
             setErrors([{ msg: 'Please enter your email' }]);
@@ -50,6 +46,11 @@ export default function Login() {
             setIsLoading(false);
         }
     };
+
+    useEffect(() => {
+        document.title = 'Login';
+    }, []);
+
     return (
         <div>
             <div className='auth-form'>
@@ -66,6 +67,7 @@ export default function Login() {
                             placeholder='Email'
                             autoComplete='off'
                             onFocus={() => setErrors([])}
+                            autoFocus
                         />
                         <div className='error'></div>
                     </div>

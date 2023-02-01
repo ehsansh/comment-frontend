@@ -1,15 +1,11 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from '../api/axios';
 import useAuth from '../hooks/useAuth';
-// import './styles/Register.scss';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faSyncAlt } from '@fortawesome/free-solid-svg-icons';
 import { useForm } from 'react-hook-form';
 export default function Register() {
     const navigate = useNavigate();
-    const [success, setSuccess] = useState(false);
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const { setAuth } = useAuth();
@@ -20,6 +16,7 @@ export default function Register() {
     } = useForm();
     const submit = async data => {
         const { name, email, password } = data;
+        if (isLoading) return;
         setIsLoading(true);
         try {
             const response = await axios.post(
@@ -42,7 +39,11 @@ export default function Register() {
         }
     };
 
-    const form = (
+    useEffect(() => {
+        document.title = 'Register';
+    }, []);
+
+    return (
         <div className='auth-form'>
             <div className='row'>
                 <h1>Register</h1>
@@ -57,6 +58,7 @@ export default function Register() {
                         autoComplete='off'
                         placeholder='Name'
                         onFocus={() => setErrors([])}
+                        autoFocus
                     />
                     <div className='error'>
                         {formErrors.name && <>Please enter your name.</>}
@@ -116,18 +118,4 @@ export default function Register() {
             </div>
         </div>
     );
-
-    const successMsg = (
-        <div className='content-form'>
-            <p>
-                You have been registered successfully!
-                <br />
-                Now you can
-                <Link to='/login'> log in </Link>
-                into your account.
-            </p>
-        </div>
-    );
-
-    return success ? successMsg : form;
 }

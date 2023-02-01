@@ -3,17 +3,15 @@ import useAxiosPrivate from '../hooks/useAxiosPrivate';
 
 import useAuth from '../hooks/useAuth';
 import useComments from '../hooks/useComments';
-// import './styles/AddComment.scss';
+
 const AddComment = ({ parent_id, btnText, setReplyId, parent_name }) => {
     let defaultText = btnText === 'reply' ? parent_name : '';
     const [text, setText] = useState(defaultText);
     const axiosPrivate = useAxiosPrivate();
-    const [errors, setErrors] = useState([]);
     const { auth } = useAuth();
     const { addComment } = useComments();
     const submit = async () => {
         if (text.length === 0) {
-            setErrors([{ msg: 'Please enter your comment.' }]);
             return;
         }
         try {
@@ -30,9 +28,7 @@ const AddComment = ({ parent_id, btnText, setReplyId, parent_name }) => {
             addComment(newComment);
             setText('');
             if (btnText === 'reply') setReplyId(0);
-        } catch (err) {
-            setErrors(err.response.data.errors);
-        }
+        } catch (err) {}
     };
 
     return (
@@ -49,12 +45,8 @@ const AddComment = ({ parent_id, btnText, setReplyId, parent_name }) => {
             <div>
                 <button className='save' onClick={() => submit()}>
                     <span className='text'>{btnText}</span>
-                    {/* {isLoading && <span className='loadingSpinner'></span>} */}
                 </button>
             </div>
-            {/* <div className='row'>
-                <div className='error-msg error'>{errors.map(e => e.msg)}</div>
-            </div> */}
         </div>
     );
 };
